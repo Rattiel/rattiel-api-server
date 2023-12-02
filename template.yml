@@ -26,6 +26,12 @@ Globals:
       AllowMethods: "'*'"
       AllowHeaders: "'*'"
       AllowOrigin: "'*'"
+    Domain:
+      DomainName: api.rattiel.net
+      CertificateArn: arn:aws:acm:ap-northeast-2:953093100803:certificate/434bc71f-f236-4057-aeae-f2f690d5817f
+      EndpointConfiguration: EDGE
+      Route53:
+        HostedZoneId: Z04384092A2AV75XTZM4I
 
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
