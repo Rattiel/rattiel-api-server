@@ -21,8 +21,14 @@ Resources:
   apiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:
-      StageName: Prod
-      Cors: "'*'"
+      StageName: prod
+      MethodSettings:
+        - ThrottlingBurstLimit: 20
+          ThrottlingRateLimit: 20
+          HttpMethod: "*"
+          ResourcePath: "/*"
+          LoggingLevel: INFO
+          MetricsEnabled: true
       Auth:
         DefaultAuthorizer: MyCognitoAuthorizer
         Authorizers:
