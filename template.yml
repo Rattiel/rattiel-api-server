@@ -31,20 +31,16 @@ Parameters:
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
 Resources:
   ApiGateway:
-    Type: AWS::ApiGateway::RestApi
+    Type: 'AWS::Serverless::Api'
     Properties:
-      Name: rattiel-api-gateway
-      Description: Cognito User Pools Authorizer REST API demo
-
-  AuthorizersCognitoUserPools:
-    Type: AWS::ApiGateway::Authorizer
-    Properties:
-      Name: CognitoAuthorizer
-      Type: COGNITO_USER_POOLS
-      RestApiId: !Ref ApiGateway
-      IdentitySource: method.request.header.authorizationToken
-      ProviderARNs:
-        - "arn:aws:cognito-idp:ap-northeast-2:953093100803:userpool/ap-northeast-2_mnvGuF0mR"
+      StageName: 'prod'
+      Auth:
+        DefaultAuthorizer: 'CognitoAuthorizer'
+        Authorizers:
+          MyCognitoAuthorizer:
+            Type: COGNITO_USER_POOLS
+            ProviderARNs:
+              - "arn:aws:cognito-idp:ap-northeast-2:953093100803:userpool/ap-northeast-2_mnvGuF0mR"
 
   EchoFunction:
     Type: AWS::Serverless::Function
@@ -64,7 +60,6 @@ Resources:
             Auth:
               Authorizer: CognitoAuthorizer
 
-  # This is a Lambda function config associated with the source code: echo.js
   GetListFunction:
     Type: AWS::Serverless::Function
     Properties:
