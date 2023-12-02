@@ -15,17 +15,17 @@ Parameters:
   AppId:
     Type: String
 
-Globals:
-  Api:
-    Auth:
-      DefaultAuthorizer: MyCognitoAuthorizer
-      Authorizers:
-        MyCognitoAuthorizer:
-          UserPoolArn: "arn:aws:cognito-idp:ap-northeast-2:953093100803:userpool/ap-northeast-2_mnvGuF0mR"
-    Cors:
-      AllowMethods: "'*'"
-      AllowHeaders: "'*'"
-      AllowOrigin: "'*'"
+#Globals:
+#  Api:
+#    Auth:
+#      DefaultAuthorizer: MyCognitoAuthorizer
+#      Authorizers:
+#        MyCognitoAuthorizer:
+#          UserPoolArn: "arn:aws:cognito-idp:ap-northeast-2:953093100803:userpool/ap-northeast-2_mnvGuF0mR"
+#    Cors:
+#      AllowMethods: "'*'"
+#      AllowHeaders: "'*'"
+#      AllowOrigin: "'*'"
 
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
@@ -58,8 +58,11 @@ Resources:
         Api:
           Type: Api
           Properties:
+            RestApiId: !Ref ApiGateway
             Path: /echo
             Method: GET
+            Auth:
+              Authorizer: CognitoAuthorizer
 
   # This is a Lambda function config associated with the source code: echo.js
   GetListFunction:
@@ -74,5 +77,8 @@ Resources:
         Api:
           Type: Api
           Properties:
+            RestApiId: !Ref ApiGateway
             Path: /
             Method: GET
+            Auth:
+              Authorizer: CognitoAuthorizer
