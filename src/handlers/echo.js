@@ -5,6 +5,7 @@ exports.handler = async (event) => {
         body: JSON.stringify({
             message: "hello",
             event: event
+
         }),
     }
 };
