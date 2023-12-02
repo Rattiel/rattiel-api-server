@@ -31,7 +31,8 @@ Resources:
       Type: COGNITO_USER_POOLS
       RestApiId: !Ref ApiGateway
       IdentitySource: method.request.header.authorizationToken
-      ProviderARNs: "arn:aws:cognito-idp:ap-northeast-2:953093100803:userpool/ap-northeast-2_mnvGuF0mR"
+      ProviderARNs:
+        - "arn:aws:cognito-idp:ap-northeast-2:953093100803:userpool/ap-northeast-2_mnvGuF0mR"
 
   EchoFunction:
     Type: AWS::Serverless::Function
