@@ -45,6 +45,8 @@ Resources:
         Api:
           Type: Api
           Properties:
+            RestApiId:
+              Ref: apiGatewayApi
             Path: /echo
             Method: GET
 
