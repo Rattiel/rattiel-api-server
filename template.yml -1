@@ -30,6 +30,18 @@ Globals:
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
 Resources:
+  ApiGateway:
+    Type: 'AWS::Serverless::Api'
+    Properties:
+      StageName: 'prod'
+      Auth:
+        DefaultAuthorizer: 'CognitoAuthorizer'
+        Authorizers:
+          MyCognitoAuthorizer:
+            Type: COGNITO_USER_POOLS
+            ProviderARNs:
+              - "arn:aws:cognito-idp:ap-northeast-2:953093100803:userpool/ap-northeast-2_mnvGuF0mR"
+
   EchoFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -42,7 +54,26 @@ Resources:
         Api:
           Type: Api
           Properties:
+            RestApiId: !Ref ApiGateway
             Path: /echo
             Method: GET
             Auth:
-              Authorizer: MyCognitoAuthorizer
+              Authorizer: CognitoAuthorizer
+
+  GetListFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/get-list.handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 60
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /
+            Method: GET
+            Auth:
+              Authorizer: CognitoAuthorizer
