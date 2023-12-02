@@ -27,8 +27,6 @@ Resources:
           ThrottlingRateLimit: 20
           HttpMethod: "*"
           ResourcePath: "/*"
-          LoggingLevel: INFO
-          MetricsEnabled: true
       Auth:
         DefaultAuthorizer: MyCognitoAuthorizer
         Authorizers:
