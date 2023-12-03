@@ -42,9 +42,24 @@ exports.handler = async (event) => {
             Key: `${id}`
         })
     } else {
+        // parse the event body
+        const formData = await parser.parse(event);
+        const file = formData.files[0];
+
+        if (!file) {
+            return {
+                statusCode: 400,
+                headers: CORS_HEADERS,
+                body: JSON.stringify({
+                    message: "no file"
+                })
+            }
+        }
+
         command = new PutObjectCommand({
             Bucket: BUCKET,
-            Key: `${id}`
+            Key: `${id}/${file.filename}`,
+            ContentType: file.contentType
         })
     }
 
