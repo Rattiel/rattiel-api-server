@@ -5,13 +5,13 @@ const CORS_HEADERS = {
 }
 
 exports.handler = async (event) => {
-    const formData = JSON.parse(event.body);
+    const formData = new FormData(event.body);
 
     return {
         statusCode: 400,
         headers: CORS_HEADERS,
         body: JSON.stringify({
-            message: JSON.stringify(event)
+            message: JSON.stringify(formData)
         })
     }
 };
