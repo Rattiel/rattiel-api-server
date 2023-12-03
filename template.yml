@@ -53,11 +53,11 @@ Resources:
             Auth:
               Authorizer: MyCognitoAuthorizer
 
-  TestFunction:
+  GetFileListFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
-      Handler: src/handlers/get-list.handler
+      Handler: src/handlers/get-file-list.handler
       Runtime: nodejs18.x
       MemorySize: 128
       Timeout: 60
@@ -68,7 +68,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /test
+            Path: /file
             Method: GET
             Auth:
               Authorizer: MyCognitoAuthorizer
