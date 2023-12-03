@@ -52,14 +52,14 @@ exports.handler = async (event) => {
     try {
         const response = await client.send(command);
 
-        let csvBlob = new Blob([response.Body.toString()], {
+        let blob = new Blob([await response.Body.transformToByteArray()], {
             type: response.ContentType,
         });
 
         return {
             statusCode: 200,
             headers: CORS_HEADERS,
-            body: csvBlob
+            body: blob
         }
     } catch (error) {
         return {
