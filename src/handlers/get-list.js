@@ -21,13 +21,20 @@ exports.handler = async (event) => {
 
     const command = new ListObjectsV2Command({
         Bucket: BUCKET,
-        Prefix: `${user}/`,
+        Prefix: `${user}`,
     })
 
-    const response = await client.send(command);
+    try {
+        const response = await client.send(command);
 
-    return {
-        statusCode: 200,
-        body: JSON.stringify(response.Contents)
+        return {
+            statusCode: 200,
+            body: JSON.stringify(response.Contents)
+        }
+    } catch (error) {
+        return {
+            statusCode: 503,
+            body: JSON.stringify(error)
+        }
     }
 };
