@@ -23,7 +23,6 @@ exports.handler = async (event) => {
         }
     }
 
-    let rootDirectory = `${user}`;
     if (!event.queryStringParameters) {
         return {
             statusCode: 400,
@@ -34,31 +33,20 @@ exports.handler = async (event) => {
         }
     }
 
-    if (event.queryStringParameters.directory) {
-        const directory = event.queryStringParameters.directory;
-        if (!directory.startsWith("/")) {
-            rootDirectory += "/";
-        }
-        rootDirectory += directory;
-        if (!directory.endsWith("/")) {
-            rootDirectory += "/";
-        }
-    }
-
-    if (!event.queryStringParameters.fileName) {
+    const id = event.queryStringParameters.id;
+    if (!id) {
         return {
             statusCode: 400,
             headers: CORS_HEADERS,
             body: JSON.stringify({
-                message: "bad request - need file name"
+                message: "bad request - no id"
             })
         }
     }
-    const fileName = event.queryStringParameters.fileName;
 
     const command = new DeleteObjectCommand({
         Bucket: BUCKET,
-        Key: `${rootDirectory}${fileName}`
+        Key: `${user}${id}`
     })
 
     try {
