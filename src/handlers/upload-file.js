@@ -40,12 +40,13 @@ exports.handler = async (event) => {
     if (!id.endsWith("/")) {
         id = `${id}/`;
     }
+    const key = `${user}${id}`;
 
     let command;
     if (!event.body) {
         command = new PutObjectCommand({
             Bucket: BUCKET,
-            Key: `${id}`
+            Key: key
         })
     } else {
         // parse the event body
@@ -64,7 +65,7 @@ exports.handler = async (event) => {
 
         command = new PutObjectCommand({
             Bucket: BUCKET,
-            Key: `${id}${file.filename}`,
+            Key: `${key}${file.filename}`,
             ContentType: file.contentType
         })
     }
