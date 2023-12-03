@@ -7,7 +7,7 @@ exports.handler = async (event) => {
         statusCode: 400,
         headers: CORS_HEADERS,
         body: JSON.stringify({
-            message: "hello world"
+            message: JSON.stringify(event)
         })
     }
 };

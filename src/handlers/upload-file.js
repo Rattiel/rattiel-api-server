@@ -24,59 +24,29 @@ exports.handler = async (event) => {
         }
     }
 
-    let rootDirectory = `${user}`;
-    if (!event.queryStringParameters) {
+    const id = event.queryStringParameters.id;
+    if (!id) {
         return {
             statusCode: 400,
             headers: CORS_HEADERS,
             body: JSON.stringify({
-                message: "bad request - need query string"
+                message: "bad request - no id"
             })
         }
     }
 
-    if (event.queryStringParameters.directory) {
-        const directory = event.queryStringParameters.directory;
-        if (!directory.startsWith("/")) {
-            rootDirectory += "/";
-        }
-        rootDirectory += directory;
-        if (!directory.endsWith("/")) {
-            rootDirectory += "/";
-        }
+    let command;
+    if (!event.body) {
+        command = new PutObjectCommand({
+            Bucket: BUCKET,
+            Key: `${id}`
+        })
+    } else {
+        command = new PutObjectCommand({
+            Bucket: BUCKET,
+            Key: `${id}`
+        })
     }
-
-
-    if (!event.queryStringParameters.fileName) {
-        return {
-            statusCode: 400,
-            headers: CORS_HEADERS,
-            body: JSON.stringify({
-                message: "bad request - need file name"
-            })
-        }
-    }
-    const fileName = event.queryStringParameters.fileName;
-
-    const result = await parser.parse(event);
-    const file = result.files[0];
-    if (!file) {
-        return {
-            statusCode: 400,
-            headers: CORS_HEADERS,
-            body: JSON.stringify({
-                message: "bad request - no file"
-            })
-        }
-    }
-
-    const command = new PutObjectCommand({
-        Bucket: BUCKET,
-        Key: `${rootDirectory}${fileName}`,
-        Body: file.content,
-        ContentType: file.contentType,
-        ContentDisposition: `attachment; filename="${file.filename}";`,
-    })
 
     try {
         await client.send(command);
