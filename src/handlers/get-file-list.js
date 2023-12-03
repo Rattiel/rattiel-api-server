@@ -16,6 +16,7 @@ exports.handler = async (event) => {
     if (!user) {
         return {
             statusCode: 400,
+            headers: CORS_HEADERS,
             body: JSON.stringify({
                 message: "user not authorized"
             }),
@@ -45,7 +46,7 @@ exports.handler = async (event) => {
         const objects = response.Contents;
         const result = [];
 
-        if (objects.length === 0) {
+        if (!objects || objects.length === 0) {
             return {
                 statusCode: 403,
                 headers: CORS_HEADERS,
@@ -63,11 +64,13 @@ exports.handler = async (event) => {
                 return;
             }
 
-            const extensions = keys.at(-1);
-            const directoryCheck = extensions.replaceAll(".", "") === extensions;
+            const name = keys.at(-1);
+            const directoryCheck = name.replaceAll(".", "") === name;
 
             let data = {
                 key: object.Key.replaceAll(user, ""),
+                path: path,
+                name: name,
                 size: object.Size,
                 type: "file",
                 lastModified: object.LastModified
