@@ -55,6 +55,7 @@ Resources:
             Method: GET
             Auth:
               Authorizer: MyCognitoAuthorizer
+
   UploadFileFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -74,6 +75,7 @@ Resources:
             Method: POST
             Auth:
               Authorizer: MyCognitoAuthorizer
+
   DeleteFileFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -90,6 +92,46 @@ Resources:
           Type: Api
           Properties:
             Path: /file
+            Method: DELETE
+            Auth:
+              Authorizer: MyCognitoAuthorizer
+
+  CreateDirectoryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/create-directory.handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 60
+      Policies:
+        - S3WritePolicy:
+            BucketName: rattiel-storage
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /directory
+            Method: POST
+            Auth:
+              Authorizer: MyCognitoAuthorizer
+
+  DeleteDirectoryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/delete-directory.handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 60
+      Policies:
+        - S3CrudPolicy:
+            BucketName: rattiel-storage
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /directory
             Method: DELETE
             Auth:
               Authorizer: MyCognitoAuthorizer

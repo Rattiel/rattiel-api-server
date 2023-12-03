@@ -45,31 +45,9 @@ exports.handler = async (event) => {
         }
     }
 
-    if (!event.queryStringParameters.fileName) {
-        return {
-            statusCode: 400,
-            headers: CORS_HEADERS,
-            body: JSON.stringify({
-                message: "bad request - need file name"
-            })
-        }
-    }
-    const fileName = event.queryStringParameters.fileName;
-
-    if (!event.body.file) {
-        return {
-            statusCode: 400,
-            headers: CORS_HEADERS,
-            body: JSON.stringify({
-                message: "bad request - no file"
-            })
-        }
-    }
-
     const command = new PutObjectCommand({
         Bucket: BUCKET,
-        Key: `${rootDirectory}${fileName}`,
-        Body: event.body.file
+        Key: `${rootDirectory}`,
     })
 
     try {
@@ -79,7 +57,7 @@ exports.handler = async (event) => {
             statusCode: 200,
             headers: CORS_HEADERS,
             body: JSON.stringify({
-                message: "file uploaded"
+                message: "directory created"
             })
         }
     } catch (error) {
