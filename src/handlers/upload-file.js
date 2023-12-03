@@ -83,7 +83,8 @@ exports.handler = async (event) => {
             statusCode: 200,
             headers: CORS_HEADERS,
             body: JSON.stringify({
-                message: "file uploaded"
+                message: "file uploaded",
+                test: file.content
             })
         }
     } catch (error) {
