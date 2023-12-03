@@ -56,8 +56,7 @@ exports.handler = async (event) => {
     }
     const fileName = event.queryStringParameters.fileName;
 
-    const body = JSON.parse(event.body);
-    if (!body.file) {
+    if (!event.body) {
         return {
             statusCode: 400,
             headers: CORS_HEADERS,
@@ -70,7 +69,7 @@ exports.handler = async (event) => {
     const command = new PutObjectCommand({
         Bucket: BUCKET,
         Key: `${rootDirectory}${fileName}`,
-        Body: body.file
+//        Body: body.file
     })
 
     try {

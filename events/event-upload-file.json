@@ -137,6 +137,8 @@
         "domainName": "api.rattiel.net",
         "apiId": "zkof2nqc5g"
     },
-    "body": "hello world!!",
+    "body": {
+        "file" : "hello world!!"
+    },
     "isBase64Encoded": false
 }
