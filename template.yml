@@ -63,7 +63,7 @@ Resources:
       Timeout: 60
       Policies:
         - S3ReadPolicy:
-            bucketName: rattiel-storage
+            BucketName: rattiel-storage
       Events:
         Api:
           Type: Api
