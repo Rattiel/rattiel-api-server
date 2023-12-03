@@ -66,6 +66,7 @@ exports.handler = async (event) => {
         command = new PutObjectCommand({
             Bucket: BUCKET,
             Key: `${key}${file.filename}`,
+            Body: file.content,
             ContentType: file.contentType
         })
     }
