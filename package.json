@@ -6,6 +6,6 @@
     "dependencies": {
         "@aws-sdk/client-s3": "^3.465.0",
         "aws-sdk": "^2.660.0",
-        "parse-multipart": "^1.0.4"
+        "lambda-multipart-parser": "^1.0.1"
     }
 }
