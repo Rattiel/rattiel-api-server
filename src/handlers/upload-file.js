@@ -1,5 +1,5 @@
 const {S3Client, PutObjectCommand} = require("@aws-sdk/client-s3")
-const multipart = require('parse-multipart');
+const parser = require('lambda-multipart-parser');
 
 const BUCKET = "rattiel-storage";
 
@@ -57,7 +57,9 @@ exports.handler = async (event) => {
     }
     const fileName = event.queryStringParameters.fileName;
 
-    if (!event.body) {
+    const result = await parser.parse(event);
+    const file = result.files[0];
+    if (!file) {
         return {
             statusCode: 400,
             headers: CORS_HEADERS,
@@ -67,11 +69,11 @@ exports.handler = async (event) => {
         }
     }
 
-    const bodyBuffer = new Buffer(event.body.toString(), "base64");
-
     const command = new PutObjectCommand({
         Bucket: BUCKET,
         Key: `${rootDirectory}${fileName}`,
+        Body: file.content,
+        ContentType: file.contentType
     })
 
     try {
