@@ -95,7 +95,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
-      Handler: src/handlers/upload-file-list.handler
+      Handler: src/handlers/delete-file-list.handler
       Runtime: nodejs18.x
       MemorySize: 128
       Timeout: 60
