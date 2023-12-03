@@ -49,25 +49,31 @@ exports.handler = async (event) => {
             Key: key
         })
     } else {
-        // parse the event body
-        const formData = await parser.parse(event);
-        const file = formData.files[0];
-
-        if (!file) {
+        if (!event.body) {
             return {
                 statusCode: 400,
                 headers: CORS_HEADERS,
                 body: JSON.stringify({
-                    message: "no file"
+                    message: "no body"
                 })
             }
         }
 
+        const fileName = event.body
+            .split('\r\n')[1]
+            .split(';')[2]
+            .split('=')[1]
+            .replace(/^"|$/g, '')
+            .trim();
+        let fileContent = event.body
+            .split('\r\n')[4]
+            .trim();
+        fileContent += `\n\nProcess Timestap: ${new Date().toISOString()}`
+
         command = new PutObjectCommand({
             Bucket: BUCKET,
-            Key: `${key}${file.filename}`,
-            Body: file.content,
-            ContentType: file.contentType
+            Key: `${key}${fileName}`,
+            Body: fileContent,
         })
     }
 
