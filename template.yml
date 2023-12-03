@@ -61,6 +61,9 @@ Resources:
       Runtime: nodejs18.x
       MemorySize: 128
       Timeout: 60
+      Policies:
+        - S3ReadPolicy:
+            bucketName: rattiel-storage
       Events:
         Api:
           Type: Api
