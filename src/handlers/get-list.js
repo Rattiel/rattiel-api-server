@@ -8,16 +8,26 @@ const client = new S3Client({
 });
 
 exports.handler = async (event) => {
+    const user = event?.requestContext?.authorizer?.claims?.sub;
+
+    if (!user) {
+        return {
+            statusCode: 400,
+            body: JSON.stringify({
+                message: "user not authorized"
+            }),
+        }
+    }
+
     const command = new ListObjectsV2Command({
         Bucket: BUCKET,
-        Prefix: "asdasdasd",
-       // MaxKeys: 2 // 최대 조회할 객체 갯수
+        Prefix: `${user}/`,
     })
 
     const response = await client.send(command);
 
     return {
         statusCode: 200,
-        body: JSON.stringify(response.Contents),
+        body: JSON.stringify(response.Contents)
     }
 };
