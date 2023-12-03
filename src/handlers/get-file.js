@@ -55,7 +55,7 @@ exports.handler = async (event) => {
         return {
             statusCode: 200,
             headers: CORS_HEADERS,
-            body: response.Body
+            body: new Blob([response.Body.toString()])
         }
     } catch (error) {
         return {
