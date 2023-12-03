@@ -36,23 +36,6 @@ Globals:
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
 Resources:
-  EchoFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: ./
-      Handler: src/handlers/echo.handler
-      Runtime: nodejs18.x
-      MemorySize: 128
-      Timeout: 60
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /echo
-            Method: GET
-            Auth:
-              Authorizer: MyCognitoAuthorizer
-
   GetFileListFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -72,11 +55,11 @@ Resources:
             Method: GET
             Auth:
               Authorizer: MyCognitoAuthorizer
-  UploadFileListFunction:
+  UploadFileFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
-      Handler: src/handlers/upload-file-list.handler
+      Handler: src/handlers/upload-file.handler
       Runtime: nodejs18.x
       MemorySize: 128
       Timeout: 60
@@ -91,11 +74,11 @@ Resources:
             Method: POST
             Auth:
               Authorizer: MyCognitoAuthorizer
-  DeleteFileListFunction:
+  DeleteFileFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
-      Handler: src/handlers/delete-file-list.handler
+      Handler: src/handlers/delete-file.handler
       Runtime: nodejs18.x
       MemorySize: 128
       Timeout: 60
