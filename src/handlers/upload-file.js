@@ -24,7 +24,7 @@ exports.handler = async (event) => {
         }
     }
 
-    const id = event.queryStringParameters.id;
+    let id = event.queryStringParameters.id;
     if (!id) {
         return {
             statusCode: 400,
@@ -33,6 +33,12 @@ exports.handler = async (event) => {
                 message: "bad request - no id"
             })
         }
+    }
+    if (!id.startsWith("/")) {
+        id = `/${id}`;
+    }
+    if (!id.endsWith("/")) {
+        id = `${id}/`;
     }
 
     let command;
@@ -58,7 +64,7 @@ exports.handler = async (event) => {
 
         command = new PutObjectCommand({
             Bucket: BUCKET,
-            Key: `${id}/${file.filename}`,
+            Key: `${id}${file.filename}`,
             ContentType: file.contentType
         })
     }
