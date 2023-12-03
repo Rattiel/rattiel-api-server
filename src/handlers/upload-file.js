@@ -59,21 +59,10 @@ exports.handler = async (event) => {
             }
         }
 
-        const fileName = event.body
-            .split('\r\n')[1]
-            .split(';')[2]
-            .split('=')[1]
-            .replace(/^"|$/g, '')
-            .trim();
-        let fileContent = event.body
-            .split('\r\n')[4]
-            .trim();
-        fileContent += `\n\nProcess Timestap: ${new Date().toISOString()}`
-
         command = new PutObjectCommand({
             Bucket: BUCKET,
-            Key: `${key}${fileName}`,
-            Body: fileContent,
+            Key: key,
+            Body: event.body,
         })
     }
 
