@@ -1,4 +1,5 @@
 const {S3Client, PutObjectCommand} = require("@aws-sdk/client-s3")
+const multipart = require('parse-multipart');
 
 const BUCKET = "rattiel-storage";
 
@@ -66,10 +67,13 @@ exports.handler = async (event) => {
         }
     }
 
+    const bodyBuffer = new Buffer(event.body.toString(), "base64");
+    let boundary = multipart.getBoundary(event.params.header['content-type']);
+    let parts = multipart.Parse(bodyBuffer, boundary);
+
     const command = new PutObjectCommand({
         Bucket: BUCKET,
         Key: `${rootDirectory}${fileName}`,
-//        Body: body.file
     })
 
     try {
