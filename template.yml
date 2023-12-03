@@ -57,7 +57,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
-      Handler: src/handlers/echo.handler
+      Handler: src/handlers/get-list.handler
       Runtime: nodejs18.x
       MemorySize: 128
       Timeout: 60
