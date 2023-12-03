@@ -46,6 +46,7 @@ exports.handler = async (event) => {
         }
     }
 
+    /*
     if (!event.queryStringParameters.fileName) {
         return {
             statusCode: 400,
@@ -56,6 +57,7 @@ exports.handler = async (event) => {
         }
     }
     const fileName = event.queryStringParameters.fileName;
+     */
 
     const result = await parser.parse(event);
     const file = result.files[0];
