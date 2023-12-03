@@ -81,7 +81,7 @@ Resources:
       MemorySize: 128
       Timeout: 60
       Policies:
-        - S3ReadPolicy:
+        - S3WritePolicy:
             BucketName: rattiel-storage
       Events:
         Api:
