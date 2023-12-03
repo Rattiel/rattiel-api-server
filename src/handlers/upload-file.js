@@ -37,13 +37,13 @@ exports.handler = async (event) => {
     if (!id.startsWith("/")) {
         id = `/${id}`;
     }
-    if (!id.endsWith("/")) {
-        id = `${id}/`;
-    }
-    const key = `${user}${id}`;
+    let key = `${user}${id}`;
 
     let command;
     if (!event.body) {
+        if (!key.endsWith("/")) {
+            key = `${key}/`;
+        }
         command = new PutObjectCommand({
             Bucket: BUCKET,
             Key: key
