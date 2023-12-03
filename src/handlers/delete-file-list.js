@@ -1,4 +1,4 @@
-const {S3Client, PutObjectCommand} = require("@aws-sdk/client-s3")
+const {S3Client, DeleteObjectCommand} = require("@aws-sdk/client-s3")
 
 const BUCKET = "rattiel-storage";
 
@@ -56,10 +56,9 @@ exports.handler = async (event) => {
     }
     const fileName = event.queryStringParameters.fileName;
 
-    const command = new PutObjectCommand({
+    const command = new DeleteObjectCommand({
         Bucket: BUCKET,
-        Key: `${rootDirectory}${fileName}`,
-        Body: event.body
+        Key: `${rootDirectory}${fileName}`
     })
 
     try {
@@ -69,7 +68,7 @@ exports.handler = async (event) => {
             statusCode: 200,
             headers: CORS_HEADERS,
             body: JSON.stringify({
-                message: "file uploaded"
+                message: "file deleted"
             })
         }
     } catch (error) {

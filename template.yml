@@ -91,3 +91,22 @@ Resources:
             Method: POST
             Auth:
               Authorizer: MyCognitoAuthorizer
+  DeleteFileListFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/upload-file-list.handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 60
+      Policies:
+        - S3CrudPolicy:
+            BucketName: rattiel-storage
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /file
+            Method: DELETE
+            Auth:
+              Authorizer: MyCognitoAuthorizer
