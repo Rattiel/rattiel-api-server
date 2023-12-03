@@ -55,46 +55,6 @@ Resources:
             Auth:
               Authorizer: MyCognitoAuthorizer
 
-  GetFileFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: ./
-      Handler: src/handlers/get-file.handler
-      Runtime: nodejs18.x
-      MemorySize: 128
-      Timeout: 60
-      Policies:
-        - S3CrudPolicy:
-            BucketName: rattiel-storage
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /file
-            Method: GET
-            Auth:
-              Authorizer: MyCognitoAuthorizer
-
-  UploadFileFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: ./
-      Handler: src/handlers/upload-file.handler
-      Runtime: nodejs18.x
-      MemorySize: 128
-      Timeout: 60
-      Policies:
-        - S3WritePolicy:
-            BucketName: rattiel-storage
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /file
-            Method: POST
-            Auth:
-              Authorizer: MyCognitoAuthorizer
-
   DeleteFileFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -112,22 +72,5 @@ Resources:
           Properties:
             Path: /file
             Method: DELETE
-            Auth:
-              Authorizer: MyCognitoAuthorizer
-
-  TestFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: ./
-      Handler: src/handlers/test.handler
-      Runtime: nodejs18.x
-      MemorySize: 128
-      Timeout: 60
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /test
-            Method: POST
             Auth:
               Authorizer: MyCognitoAuthorizer
