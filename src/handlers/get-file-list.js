@@ -66,21 +66,21 @@ exports.handler = async (event) => {
             const extensions = keys.at(-1);
             const directoryCheck = extensions.replaceAll(".", "") === extensions;
 
-            if (directoryCheck && object.Size === 0) {
-                result.push({
-                    key: object.Key,
-                    size: object.Size,
-                    type: "directory",
-                    lastModified: object.LastModified
-                })
-            } else {
-                result.push({
-                    key: object.Key,
-                    size: object.Size,
-                    type: "file",
-                    lastModified: object.LastModified
-                })
+            let data = {
+                key: object.Key.replaceAll(user, ""),
+                size: object.Size,
+                type: "file",
+                lastModified: object.LastModified
             }
+
+            if (directoryCheck && object.Size === 0) {
+                data = {
+                    ...data,
+                    type: "directory"
+                }
+            }
+
+            result.push(data);
         })
 
         return {
