@@ -1,0 +1,140 @@
+{
+    "resource": "/echo",
+    "path": "/echo",
+    "httpMethod": "GET",
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Authorization": "Bearer eyJraWQiOiJiUmo2ZFA0ZWVRZkcxeUtPOHhFWStPWDJiMDYrWHd5U3IxNUlBd2xUa0Z3PSIsImFsZyI6IlJTMjU2In0.eyJhdF9oYXNoIjoiTTVOR1RCdlVab3hDTTl4MUl4U0JWQSIsInN1YiI6IjlmZmIzNGM4LWM5NTQtNGNkZC05NWQzLTFiMWM3MDJlMTIxNCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtbm9ydGhlYXN0LTIuYW1hem9uYXdzLmNvbVwvYXAtbm9ydGhlYXN0LTJfbW52R3VGMG1SIiwiY29nbml0bzp1c2VybmFtZSI6ImFkbWluIiwib3JpZ2luX2p0aSI6ImUzMjc1Y2UzLTJjOGEtNGNlZC05OWY1LTQxY2IwYjZlMzJhNCIsImF1ZCI6IjR0YnJ2N2o2NGo3N2xiOWIwZHNycWNtZnBlIiwiZXZlbnRfaWQiOiJhOWYwNTg3ZS0yMzU3LTRmYTctODg1OS1lMDBkYjkwM2I3OTQiLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTcwMTUyNDU3NywiZXhwIjoxNzAxNTY5NTMzLCJpYXQiOjE3MDE1NjU5MzQsImp0aSI6IjRlZDNhYTEwLWQ5YzctNDU4Yi05MDlhLTg1YzZiNmM4ZWVlYSIsImVtYWlsIjoid2hkZGxmMDUwNEBpY2xvdWQuY29tIn0.JLrxYpxoWyPS0pfJh8sxht4WMF_Kms3GpoTym-uEkSkdJfNbgupQQLt-3zle6MmW7UQbX5kJxZ797e-6hymiD9pspr85dYC-yN-zvqBrycQpLJQ999IODSowc3fxt8wBsKgeksZkUwBU436qEKU11k7JrVcBn4uaLlZ34Ea7nAghIn7nqcn6yXMj7VpW0CPhPn0iDKDOzy-mBzTWfh5pNBwybCkbd6RcjhWgUZkTbIYTLVicJ5E4CWYuDmiPN8_0oAlz6uAH8iW-Nn8mydXl4bo1__aUFnnZd6ARhRPllxfzgB-DTuTBLB1ggXYvajBvH8ikfZwWLrw8SumdT5S5Jw",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-ASN": "38120",
+        "CloudFront-Viewer-Country": "KR",
+        "Host": "api.rattiel.net",
+        "Postman-Token": "2fee5464-14ea-4476-b1dd-eafccc94cf99",
+        "User-Agent": "PostmanRuntime/7.35.0",
+        "Via": "1.1 9fc95092bba06532109a035215d01250.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "LOLXRhsU_fK_K2uEhg--HeFQMlpSLo2WXsAkQIaDg7WMPHoCiRmmRQ==",
+        "X-Amzn-Trace-Id": "Root=1-656bd5f4-7cab58a11a6e22f96a85e3fa",
+        "X-Forwarded-For": "115.31.121.170, 70.132.53.137",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    },
+    "multiValueHeaders": {
+        "Accept": [
+            "*/*"
+        ],
+        "Accept-Encoding": [
+            "gzip, deflate, br"
+        ],
+        "Authorization": [
+            "Bearer eyJraWQiOiJiUmo2ZFA0ZWVRZkcxeUtPOHhFWStPWDJiMDYrWHd5U3IxNUlBd2xUa0Z3PSIsImFsZyI6IlJTMjU2In0.eyJhdF9oYXNoIjoiTTVOR1RCdlVab3hDTTl4MUl4U0JWQSIsInN1YiI6IjlmZmIzNGM4LWM5NTQtNGNkZC05NWQzLTFiMWM3MDJlMTIxNCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtbm9ydGhlYXN0LTIuYW1hem9uYXdzLmNvbVwvYXAtbm9ydGhlYXN0LTJfbW52R3VGMG1SIiwiY29nbml0bzp1c2VybmFtZSI6ImFkbWluIiwib3JpZ2luX2p0aSI6ImUzMjc1Y2UzLTJjOGEtNGNlZC05OWY1LTQxY2IwYjZlMzJhNCIsImF1ZCI6IjR0YnJ2N2o2NGo3N2xiOWIwZHNycWNtZnBlIiwiZXZlbnRfaWQiOiJhOWYwNTg3ZS0yMzU3LTRmYTctODg1OS1lMDBkYjkwM2I3OTQiLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTcwMTUyNDU3NywiZXhwIjoxNzAxNTY5NTMzLCJpYXQiOjE3MDE1NjU5MzQsImp0aSI6IjRlZDNhYTEwLWQ5YzctNDU4Yi05MDlhLTg1YzZiNmM4ZWVlYSIsImVtYWlsIjoid2hkZGxmMDUwNEBpY2xvdWQuY29tIn0.JLrxYpxoWyPS0pfJh8sxht4WMF_Kms3GpoTym-uEkSkdJfNbgupQQLt-3zle6MmW7UQbX5kJxZ797e-6hymiD9pspr85dYC-yN-zvqBrycQpLJQ999IODSowc3fxt8wBsKgeksZkUwBU436qEKU11k7JrVcBn4uaLlZ34Ea7nAghIn7nqcn6yXMj7VpW0CPhPn0iDKDOzy-mBzTWfh5pNBwybCkbd6RcjhWgUZkTbIYTLVicJ5E4CWYuDmiPN8_0oAlz6uAH8iW-Nn8mydXl4bo1__aUFnnZd6ARhRPllxfzgB-DTuTBLB1ggXYvajBvH8ikfZwWLrw8SumdT5S5Jw"
+        ],
+        "CloudFront-Forwarded-Proto": [
+            "https"
+        ],
+        "CloudFront-Is-Desktop-Viewer": [
+            "true"
+        ],
+        "CloudFront-Is-Mobile-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-SmartTV-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-Tablet-Viewer": [
+            "false"
+        ],
+        "CloudFront-Viewer-ASN": [
+            "38120"
+        ],
+        "CloudFront-Viewer-Country": [
+            "KR"
+        ],
+        "Host": [
+            "api.rattiel.net"
+        ],
+        "Postman-Token": [
+            "2fee5464-14ea-4476-b1dd-eafccc94cf99"
+        ],
+        "User-Agent": [
+            "PostmanRuntime/7.35.0"
+        ],
+        "Via": [
+            "1.1 9fc95092bba06532109a035215d01250.cloudfront.net (CloudFront)"
+        ],
+        "X-Amz-Cf-Id": [
+            "LOLXRhsU_fK_K2uEhg--HeFQMlpSLo2WXsAkQIaDg7WMPHoCiRmmRQ=="
+        ],
+        "X-Amzn-Trace-Id": [
+            "Root=1-656bd5f4-7cab58a11a6e22f96a85e3fa"
+        ],
+        "X-Forwarded-For": [
+            "115.31.121.170, 70.132.53.137"
+        ],
+        "X-Forwarded-Port": [
+            "443"
+        ],
+        "X-Forwarded-Proto": [
+            "https"
+        ]
+    },
+    "queryStringParameters": {
+        "id": "/app.json"
+    },
+    "multiValueQueryStringParameters": null,
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+        "resourceId": "kqfkdg",
+        "authorizer": {
+            "claims": {
+                "at_hash": "M5NGTBvUZoxCM9x1IxSBVA",
+                "sub": "9ffb34c8-c954-4cdd-95d3-1b1c702e1214",
+                "email_verified": "true",
+                "iss": "https://cognito-idp.ap-northeast-2.amazonaws.com/ap-northeast-2_mnvGuF0mR",
+                "cognito:username": "admin",
+                "origin_jti": "e3275ce3-2c8a-4ced-99f5-41cb0b6e32a4",
+                "aud": "4tbrv7j64j77lb9b0dsrqcmfpe",
+                "event_id": "a9f0587e-2357-4fa7-8859-e00db903b794",
+                "token_use": "id",
+                "auth_time": "1701524577",
+                "exp": "Sun Dec 03 02:12:13 UTC 2023",
+                "iat": "Sun Dec 03 01:12:14 UTC 2023",
+                "jti": "4ed3aa10-d9c7-458b-909a-85c6b6c8eeea",
+                "email": "whddlf0504@icloud.com"
+            }
+        },
+        "resourcePath": "/echo",
+        "httpMethod": "GET",
+        "extendedRequestId": "PV5eUEEnoE0EDIw=",
+        "requestTime": "03/Dec/2023:01:12:20 +0000",
+        "path": "/echo",
+        "accountId": "953093100803",
+        "protocol": "HTTP/1.1",
+        "stage": "Prod",
+        "domainPrefix": "api",
+        "requestTimeEpoch": 1701565940948,
+        "requestId": "07440381-91ec-4671-8361-e4eca7ab5afe",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": null,
+            "cognitoIdentityId": null,
+            "caller": null,
+            "sourceIp": "115.31.121.170",
+            "principalOrgId": null,
+            "accessKey": null,
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": null,
+            "userAgent": "PostmanRuntime/7.35.0",
+            "user": null
+        },
+        "domainName": "api.rattiel.net",
+        "apiId": "zkof2nqc5g"
+    },
+    "isBase64Encoded": false
+}
