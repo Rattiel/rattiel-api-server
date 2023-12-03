@@ -18,7 +18,6 @@ Parameters:
 Globals:
   Api:
     Auth:
-      DefaultAuthorizer: MyCognitoAuthorizer
       Authorizers:
         MyCognitoAuthorizer:
           UserPoolArn: "arn:aws:cognito-idp:ap-northeast-2:953093100803:userpool/ap-northeast-2_mnvGuF0mR"
