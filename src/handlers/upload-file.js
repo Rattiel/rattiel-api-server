@@ -46,7 +46,7 @@ exports.handler = async (event) => {
         }
     }
 
-    /*
+
     if (!event.queryStringParameters.fileName) {
         return {
             statusCode: 400,
@@ -57,7 +57,6 @@ exports.handler = async (event) => {
         }
     }
     const fileName = event.queryStringParameters.fileName;
-     */
 
     const result = await parser.parse(event);
     const file = result.files[0];
@@ -73,10 +72,10 @@ exports.handler = async (event) => {
 
     const command = new PutObjectCommand({
         Bucket: BUCKET,
-        Key: `${rootDirectory}${file.filename}`,
+        Key: `${rootDirectory}${fileName}`,
         Body: file.content,
         ContentType: file.contentType,
-        ContentEncoding: file.encoding
+        ContentDisposition: `attachment; filename="${file.filename}";`,
     })
 
     try {
