@@ -68,8 +68,6 @@ exports.handler = async (event) => {
     }
 
     const bodyBuffer = new Buffer(event.body.toString(), "base64");
-    let boundary = multipart.getBoundary(event.headers['content-type']);
-    let parts = multipart.Parse(bodyBuffer, boundary);
 
     const command = new PutObjectCommand({
         Bucket: BUCKET,
