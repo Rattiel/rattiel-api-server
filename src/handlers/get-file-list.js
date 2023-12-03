@@ -68,7 +68,7 @@ exports.handler = async (event) => {
             const directoryCheck = name.replaceAll(".", "") === name;
 
             let data = {
-                key: object.Key.replaceAll(user, ""),
+                id: object.Key.replaceAll(user, ""),
                 path: path,
                 name: name,
                 size: object.Size,
