@@ -83,7 +83,7 @@
         ]
     },
     "queryStringParameters": {
-        "directory": "test/"
+        "directory": "test/aa"
     },
     "multiValueQueryStringParameters": null,
     "pathParameters": null,

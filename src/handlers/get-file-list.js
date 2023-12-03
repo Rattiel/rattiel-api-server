@@ -1,7 +1,10 @@
-
 const {S3Client, ListObjectsV2Command} = require("@aws-sdk/client-s3")
 
 const BUCKET = "rattiel-storage";
+
+const CORS_HEADERS = {
+    'Access-Control-Allow-Origin': '*'
+}
 
 const client = new S3Client({
     region: "ap-northeast-2"
@@ -42,6 +45,16 @@ exports.handler = async (event) => {
         const objects = response.Contents;
         const result = [];
 
+        if (objects.length === 0) {
+            return {
+                statusCode: 403,
+                headers: CORS_HEADERS,
+                body: JSON.stringify({
+                    message: "not found directory"
+                })
+            }
+        }
+
         objects.forEach((object) => {
             const path = object.Key.replaceAll(rootDirectory, "");
             const keys = path.split("/");
@@ -72,6 +85,7 @@ exports.handler = async (event) => {
 
         return {
             statusCode: 200,
+            headers: CORS_HEADERS,
             body: JSON.stringify({
                 file: result,
                 length: result.length
@@ -80,6 +94,7 @@ exports.handler = async (event) => {
     } catch (error) {
         return {
             statusCode: 503,
+            headers: CORS_HEADERS,
             body: JSON.stringify(error)
         }
     }
