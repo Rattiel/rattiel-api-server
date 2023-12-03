@@ -71,9 +71,10 @@ exports.handler = async (event) => {
 
     const command = new PutObjectCommand({
         Bucket: BUCKET,
-        Key: `${rootDirectory}${fileName}`,
+        Key: `${rootDirectory}${file.filename}`,
         Body: file.content,
-        ContentType: file.contentType
+        ContentType: file.contentType,
+        ContentEncoding: file.encoding
     })
 
     try {
@@ -83,8 +84,7 @@ exports.handler = async (event) => {
             statusCode: 200,
             headers: CORS_HEADERS,
             body: JSON.stringify({
-                message: "file uploaded",
-                test: file.content
+                message: "file uploaded"
             })
         }
     } catch (error) {
