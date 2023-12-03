@@ -135,3 +135,20 @@ Resources:
             Method: DELETE
             Auth:
               Authorizer: MyCognitoAuthorizer
+
+  TestFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/test.handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 60
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /test
+            Method: POST
+            Auth:
+              Authorizer: MyCognitoAuthorizer
