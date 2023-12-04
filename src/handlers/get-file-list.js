@@ -46,16 +46,6 @@ exports.handler = async (event) => {
         const objects = response.Contents;
         const result = [];
 
-        if (!objects && rootDirectory !== `${user}/`) {
-            return {
-                statusCode: 403,
-                headers: CORS_HEADERS,
-                body: JSON.stringify({
-                    message: "not found directory"
-                })
-            }
-        }
-
         objects?.forEach((object) => {
             const path = object.Key.replaceAll(rootDirectory, "");
             const keys = path.split("/");
